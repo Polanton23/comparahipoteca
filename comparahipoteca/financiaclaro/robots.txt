@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /legal/
-
-Sitemap: https://financiaclaro.es/sitemap.xml
