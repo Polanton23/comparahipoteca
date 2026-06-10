@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog de finanzas y hipotecas — FinanciaClaro</title>
+<meta name="description" content="Guías, análisis y comparativas sobre hipotecas, ahorro, inversión y finanzas personales en España. Contenido actualizado mensualmente.">
+<link rel="canonical" href="https://financiaclaro.es/blog.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav class="nav"><div class="nav__inner"><div class="nav__left"><a class="nav__logo" href="index.html">FinanciaClaro</a><div class="nav__links"><a href="hipotecas.html">Hipotecas</a><a href="finanzas-personales.html">Finanzas personales</a><a href="inversiones.html">Inversiones</a><a href="herramientas/calculadora-hipoteca.html">Herramientas</a><a href="blog.html" class="active">Blog</a></div></div><div class="nav__right"><a class="nav__cta-ghost" href="herramientas/calculadora-hipoteca.html">Calculadora</a><a class="nav__cta" href="hipotecas.html#comparador">Comparar hipotecas</a><button class="nav__burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button></div></div></nav>
+<div class="nav__mobile" id="mobile-menu"><a href="hipotecas.html">Hipotecas</a><a href="finanzas-personales.html">Finanzas personales</a><a href="inversiones.html">Inversiones</a><a href="herramientas/calculadora-hipoteca.html">Herramientas</a><a href="blog.html">Blog</a><a class="nav__cta" href="hipotecas.html#comparador">Comparar →</a></div>
+<main>
+  <section style="padding-top:60px;padding-bottom:40px;">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>Blog</span></div>
+      <h1 style="font-size:clamp(36px,5vw,64px);margin-bottom:16px;">Artículos y guías financieras</h1>
+      <p style="font-size:18px;color:var(--color-muted);max-width:560px;">Contenido actualizado sobre hipotecas, ahorro, inversión y finanzas personales para España.</p>
+    </div>
+  </section>
+
+  <!-- FILTROS -->
+  <section style="margin-bottom:40px;">
+    <div class="container">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button onclick="filterCat('all')" id="f-all" class="btn btn--primary btn--sm">Todos</button>
+        <button onclick="filterCat('hipotecas')" id="f-hipotecas" class="btn btn--outline btn--sm">Hipotecas</button>
+        <button onclick="filterCat('ahorro')" id="f-ahorro" class="btn btn--outline btn--sm">Ahorro</button>
+        <button onclick="filterCat('inversion')" id="f-inversion" class="btn btn--outline btn--sm">Inversión</button>
+        <button onclick="filterCat('irpf')" id="f-irpf" class="btn btn--outline btn--sm">IRPF</button>
+        <button onclick="filterCat('euribor')" id="f-euribor" class="btn btn--outline btn--sm">Euríbor</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTÍCULOS GRID -->
+  <section class="section--lg">
+    <div class="container">
+      <div class="blog-layout">
+        <div>
+          <div class="articles-grid" id="articles-grid">
+            <a class="article-card" data-cat="euribor" href="articulos/euribor-hoy.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop" alt="Euríbor">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Euríbor</span><div class="article-card__dot"></div><span class="article-card__date">5 jun 2026</span></div><h4 class="article-card__title">Euríbor junio 2026: previsión y qué significa para tu hipoteca</h4><p class="article-card__excerpt">El Euríbor cierra mayo en 2.48%. Analizamos la evolución y qué esperar.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="hipotecas" href="articulos/mejores-hipotecas-fijas.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop" alt="Hipotecas fijas">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Hipotecas</span><div class="article-card__dot"></div><span class="article-card__date">1 jun 2026</span></div><h4 class="article-card__title">Las 5 mejores hipotecas fijas de junio 2026</h4><p class="article-card__excerpt">Análisis de las ofertas más competitivas del mercado español este mes.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="ahorro" href="articulos/como-ahorrar-para-hipoteca.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=800&auto=format&fit=crop" alt="Ahorro hipoteca">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Ahorro</span><div class="article-card__dot"></div><span class="article-card__date">28 may 2026</span></div><h4 class="article-card__title">Cómo ahorrar para una hipoteca siendo joven en España</h4><p class="article-card__excerpt">Estrategias reales para llegar al 20% de entrada antes de los 35 años.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="hipotecas" href="articulos/hipoteca-fija-vs-variable.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop" alt="Fija vs variable">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Hipotecas</span><div class="article-card__dot"></div><span class="article-card__date">20 may 2026</span></div><h4 class="article-card__title">Hipoteca fija vs. variable: ¿cuál elegir en 2026?</h4><p class="article-card__excerpt">Comparativa completa con datos actualizados del mercado hipotecario.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="inversion" href="articulos/mejores-fondos-indexados-espana.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop" alt="Fondos indexados">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Inversión</span><div class="article-card__dot"></div><span class="article-card__date">15 may 2026</span></div><h4 class="article-card__title">Los mejores fondos indexados en España 2026</h4><p class="article-card__excerpt">Comparativa de fondos de bajo coste para empezar a invertir desde 50 €/mes.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="hipotecas" href="articulos/gastos-hipoteca.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop" alt="Gastos hipoteca">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Hipotecas</span><div class="article-card__dot"></div><span class="article-card__date">10 may 2026</span></div><h4 class="article-card__title">Todos los gastos de una hipoteca en 2026</h4><p class="article-card__excerpt">Notaría, registro, tasación, impuestos… Cuánto te costará realmente comprar un piso.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="ahorro" href="articulos/como-ahorrar-10000-euros.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=800&auto=format&fit=crop" alt="Ahorrar 10000 euros">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Ahorro</span><div class="article-card__dot"></div><span class="article-card__date">5 may 2026</span></div><h4 class="article-card__title">Cómo ahorrar 10.000 € en un año: plan paso a paso</h4><p class="article-card__excerpt">La regla del 50/30/20 y otras estrategias reales para aumentar tu ahorro.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="irpf" href="articulos/declaracion-renta-hipoteca.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop" alt="Renta hipoteca">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">IRPF</span><div class="article-card__dot"></div><span class="article-card__date">28 abr 2026</span></div><h4 class="article-card__title">Hipoteca y declaración de la renta: deducciones en 2026</h4><p class="article-card__excerpt">Qué puedes deducirte si tienes hipoteca y cómo hacerlo correctamente en tu IRPF.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="hipotecas" href="articulos/subrogacion-hipoteca.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop" alt="Subrogación">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Hipotecas</span><div class="article-card__dot"></div><span class="article-card__date">20 abr 2026</span></div><h4 class="article-card__title">Subrogación de hipoteca: cómo cambiarte de banco en 2026</h4><p class="article-card__excerpt">Guía completa para mejorar las condiciones de tu hipoteca cambiando de entidad.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+            <a class="article-card" data-cat="inversion" href="articulos/plan-pensiones-o-fondo-indexado.html">
+              <img class="article-card__img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=800&auto=format&fit=crop" alt="Plan pensiones">
+              <div class="article-card__body"><div class="article-card__meta"><span class="article-card__cat">Inversión</span><div class="article-card__dot"></div><span class="article-card__date">15 abr 2026</span></div><h4 class="article-card__title">Plan de pensiones vs. fondo indexado: ¿cuál es mejor para jubilarse?</h4><p class="article-card__excerpt">Comparamos rentabilidad, fiscalidad y flexibilidad para ayudarte a decidir.</p><span class="article-card__more">Leer más →</span></div>
+            </a>
+          </div>
+        </div>
+        <!-- SIDEBAR -->
+        <aside>
+          <div class="sidebar-box">
+            <h4>Herramientas gratuitas</h4>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <a class="btn btn--primary" style="justify-content:center;font-size:13px;" href="herramientas/calculadora-hipoteca.html">🏠 Calculadora hipoteca</a>
+              <a class="btn btn--outline" style="justify-content:center;font-size:13px;" href="herramientas/simulador-ahorro.html">💰 Simulador ahorro</a>
+              <a class="btn btn--outline" style="justify-content:center;font-size:13px;" href="herramientas/calculadora-irpf.html">📊 Calculadora IRPF</a>
+              <a class="btn btn--outline" style="justify-content:center;font-size:13px;" href="herramientas/calculadora-euribor.html">📈 Cuota con Euríbor</a>
+            </div>
+          </div>
+          <div class="sidebar-box">
+            <h4>Artículos más leídos</h4>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <a href="articulos/euribor-hoy.html" style="font-size:14px;font-weight:500;">📊 Euríbor junio 2026</a>
+              <a href="articulos/hipoteca-fija-vs-variable.html" style="font-size:14px;font-weight:500;">🏠 Fija vs. variable 2026</a>
+              <a href="articulos/como-ahorrar-10000-euros.html" style="font-size:14px;font-weight:500;">💰 Ahorrar 10.000 € en un año</a>
+              <a href="articulos/mejores-fondos-indexados-espana.html" style="font-size:14px;font-weight:500;">📈 Mejores fondos indexados</a>
+              <a href="articulos/subrogacion-hipoteca.html" style="font-size:14px;font-weight:500;">🔄 Subrogación de hipoteca</a>
+            </div>
+          </div>
+          <div class="sidebar-box" style="background:var(--color-primary);color:#fff;border-color:var(--color-primary);">
+            <h4 style="color:rgba(255,255,255,0.7);">Dato del mes</h4>
+            <div style="font-size:48px;font-weight:700;letter-spacing:-0.04em;line-height:1;margin:8px 0;">2.48%</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:16px;">Euríbor a 12 meses en mayo 2026. Bajada de 0.12 puntos respecto a abril.</p>
+            <a class="btn" style="background:#fff;color:#000;justify-content:center;font-size:13px;width:100%;" href="articulos/euribor-hoy.html">Ver evolución →</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="container"><div class="footer__grid"><div class="footer__brand"><div class="footer__logo">FinanciaClaro</div><p class="footer__tagline">Guías y comparativas de hipotecas y finanzas personales para España.</p></div><div class="footer__col"><h5>Hipotecas</h5><ul><li><a href="articulos/hipoteca-fija-vs-variable.html">Fija vs. variable</a></li><li><a href="articulos/mejores-hipotecas-fijas.html">Mejores hipotecas fijas</a></li><li><a href="articulos/subrogacion-hipoteca.html">Subrogación</a></li><li><a href="articulos/euribor-hoy.html">Euríbor hoy</a></li></ul></div><div class="footer__col"><h5>Finanzas</h5><ul><li><a href="articulos/como-ahorrar-dinero.html">Ahorro</a></li><li><a href="articulos/fondos-indexados-que-son.html">Fondos indexados</a></li><li><a href="articulos/declaracion-renta-hipoteca.html">IRPF</a></li><li><a href="articulos/mejores-cuentas-remuneradas.html">Cuentas remuneradas</a></li></ul></div><div class="footer__col"><h5>Herramientas</h5><ul><li><a href="herramientas/calculadora-hipoteca.html">Calculadora hipoteca</a></li><li><a href="herramientas/simulador-ahorro.html">Simulador ahorro</a></li><li><a href="herramientas/calculadora-irpf.html">Calculadora IRPF</a></li><li><a href="herramientas/calculadora-euribor.html">Cuota Euríbor</a></li></ul></div><div class="footer__col"><h5>Legal</h5><ul><li><a href="legal/aviso-legal.html">Aviso legal</a></li><li><a href="legal/politica-privacidad.html">Privacidad</a></li><li><a href="legal/politica-cookies.html">Cookies</a></li><li><a href="legal/sobre-nosotros.html">Sobre nosotros</a></li></ul></div></div><div class="footer__bottom"><p class="footer__copy">© 2026 FinanciaClaro. Información financiera orientativa.</p><p class="footer__disclaimer">Datos orientativos. Consulta con un profesional antes de firmar cualquier producto financiero.</p></div></div></footer>
+<div class="cookie-overlay" id="cookie-overlay"><div class="cookie-modal"><h3>🍪 Usamos cookies</h3><p>Utilizamos cookies para analizar el tráfico. Lee nuestra <a href="legal/politica-cookies.html">política de cookies</a>.</p><div class="cookie-btns"><button class="cookie-accept" id="cookie-accept">Aceptar</button><button class="cookie-reject" id="cookie-reject">Rechazar</button></div></div></div>
+<script src="assets/js/main.js"></script>
+<script>
+function filterCat(cat) {
+  document.querySelectorAll('[id^="f-"]').forEach(b => {
+    b.className = 'btn btn--outline btn--sm';
+  });
+  document.getElementById('f-'+cat).className = 'btn btn--primary btn--sm';
+  document.querySelectorAll('#articles-grid .article-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body></html>
