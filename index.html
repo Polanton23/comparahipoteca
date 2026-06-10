@@ -1,519 +1,769 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="light" lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FinanciaClaro — Hipotecas y finanzas personales en España</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>FinanciaClaro — Tu guía de hipotecas y finanzas en España</title>
 <meta name="description" content="Compara hipotecas, calcula cuotas y toma mejores decisiones financieras. Guías claras y herramientas gratuitas para tus finanzas personales en España.">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="FinanciaClaro — Hipotecas y finanzas personales">
-<meta property="og:description" content="Comparamos hipotecas, explicamos productos financieros y te damos herramientas para tomar el control de tu dinero.">
+<meta property="og:title" content="FinanciaClaro — Hipotecas y finanzas personales en España">
+<meta property="og:description" content="Compara hipotecas, calcula cuotas y toma mejores decisiones financieras.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://financiaclaro.es/">
-<link rel="canonical" href="https://financiaclaro.es/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"FinanciaClaro","url":"https://financiaclaro.es","description":"Guías y comparativas de hipotecas y finanzas personales en España","potentialAction":{"@type":"SearchAction","target":"https://financiaclaro.es/blog.html?q={search_term_string}","query-input":"required name=search_term_string"}}
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "outline-variant": "#c4c7c7",
+          "surface-tint": "#5f5e5e",
+          "on-secondary-container": "#626262",
+          "surface-container-low": "#f7f3f2",
+          "on-surface": "#1c1b1b",
+          "primary": "#000000",
+          "surface-container-highest": "#e5e2e1",
+          "inverse-on-surface": "#f4f0ef",
+          "on-error-container": "#93000a",
+          "outline": "#747878",
+          "on-primary": "#ffffff",
+          "inverse-primary": "#c8c6c5",
+          "surface-container-high": "#ebe7e6",
+          "error": "#ba1a1a",
+          "surface-bright": "#fdf8f8",
+          "background": "#fdf8f8",
+          "surface-variant": "#e5e2e1",
+          "surface-container-lowest": "#ffffff",
+          "inverse-surface": "#313030",
+          "secondary-container": "#e1dfdf",
+          "primary-container": "#1c1b1b",
+          "surface": "#fdf8f8",
+          "on-surface-variant": "#444748",
+          "on-secondary": "#ffffff",
+          "secondary": "#5e5e5e",
+          "on-error": "#ffffff",
+          "surface-dim": "#ddd9d8",
+          "surface-container": "#f1edec",
+          "on-primary-fixed": "#1c1b1b",
+          "on-background": "#1c1b1b",
+          "on-primary-container": "#858383"
+        },
+        borderRadius: {
+          DEFAULT: "0.25rem",
+          lg: "0.5rem",
+          xl: "0.75rem",
+          full: "9999px",
+          "2xl": "1.5rem",
+          "3xl": "1.75rem"
+        },
+        spacing: {
+          unit_base: "8px",
+          max_width: "1280px",
+          gutter: "32px",
+          section_gap: "140px"
+        },
+        fontFamily: {
+          h1: ["Geist"],
+          h2: ["Geist"],
+          h3: ["Geist"],
+          "label-caps": ["Geist"],
+          "body-md": ["Geist"],
+          "body-lg": ["Geist"]
+        },
+        fontSize: {
+          h1: ["80px", { lineHeight: "1.05", letterSpacing: "-0.04em", fontWeight: "600" }],
+          h2: ["56px", { lineHeight: "1.1", letterSpacing: "-0.03em", fontWeight: "600" }],
+          h3: ["28px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600" }],
+          "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "600" }],
+          "body-md": ["16px", { lineHeight: "1.5", letterSpacing: "0", fontWeight: "400" }],
+          "body-lg": ["18px", { lineHeight: "1.6", letterSpacing: "-0.01em", fontWeight: "400" }]
+        }
+      }
+    }
+  }
 </script>
+<style>
+  body { background-color: #F7F7F5; color: #111111; }
+  .text-secondary-fc { color: #6B6B6B; }
+  .bg-panel-fc { background-color: #F3F2EF; }
+  .bg-card-fc { background-color: #FCFCFB; }
+  .border-fc { border-color: #E7E7E4; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .material-symbols-outlined.fill {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    display: flex;
+    animation: marquee 40s linear infinite;
+  }
+  /* Calculadora slider */
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #E7E7E4;
+    border-radius: 2px;
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+</style>
 </head>
-<body>
+<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden">
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav__inner">
-    <div class="nav__left">
-      <a class="nav__logo" href="index.html">FinanciaClaro</a>
-      <div class="nav__links">
-        <a href="hipotecas.html">Hipotecas</a>
-        <a href="finanzas-personales.html">Finanzas personales</a>
-        <a href="inversiones.html">Inversiones</a>
-        <a href="herramientas/calculadora-hipoteca.html">Herramientas</a>
-        <a href="blog.html">Blog</a>
+<!-- NAVEGACIÓN -->
+<nav class="fixed top-0 w-full z-50 border-b border-zinc-200/60 bg-[#F7F7F5]/85 backdrop-blur-md transition-all">
+  <div class="max-w-[1280px] mx-auto px-8 flex justify-between items-center h-[72px]">
+    <div class="flex items-center gap-10">
+      <a class="text-[20px] font-bold tracking-tighter text-zinc-900 font-h1" href="#">
+        FinanciaClaro
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a class="text-sm font-medium tracking-tight text-zinc-500 hover:text-zinc-900 transition-colors duration-200 font-body-md" href="#hipotecas">Hipotecas</a>
+        <a class="text-sm font-medium tracking-tight text-zinc-500 hover:text-zinc-900 transition-colors duration-200 font-body-md" href="#finanzas">Finanzas personales</a>
+        <a class="text-sm font-medium tracking-tight text-zinc-500 hover:text-zinc-900 transition-colors duration-200 font-body-md" href="#inversiones">Inversiones</a>
+        <a class="text-sm font-medium tracking-tight text-zinc-500 hover:text-zinc-900 transition-colors duration-200 font-body-md" href="#herramientas">Herramientas</a>
+        <a class="text-sm font-medium tracking-tight text-zinc-500 hover:text-zinc-900 transition-colors duration-200 font-body-md" href="#blog">Blog</a>
       </div>
     </div>
-    <div class="nav__right">
-      <a class="nav__cta-ghost" href="herramientas/calculadora-hipoteca.html">Calculadora</a>
-      <a class="nav__cta" href="hipotecas.html#comparador">Comparar hipotecas</a>
-      <button class="nav__burger" id="burger" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="flex items-center gap-3">
+      <a class="hidden md:block text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors" href="#calculadora">Calculadora</a>
+      <a class="bg-primary text-on-primary px-5 py-2.5 rounded-full font-medium transition-all hover:bg-opacity-90 text-[14px] font-body-md" href="#comparador">Comparar hipotecas</a>
     </div>
   </div>
 </nav>
-<div class="nav__mobile" id="mobile-menu">
-  <a href="hipotecas.html">Hipotecas</a>
-  <a href="finanzas-personales.html">Finanzas personales</a>
-  <a href="inversiones.html">Inversiones</a>
-  <a href="herramientas/calculadora-hipoteca.html">Herramientas</a>
-  <a href="blog.html">Blog</a>
-  <a class="nav__cta" href="hipotecas.html#comparador">Comparar hipotecas →</a>
-</div>
 
-<main>
+<!-- MAIN -->
+<main class="flex-grow pt-[140px] pb-12">
 
   <!-- HERO -->
-  <section class="hero section--lg">
-    <div class="container">
-      <div class="hero__grid">
-        <div>
-          <div class="hero__eyebrow">
-            <span class="dot-live"></span>
-            Euríbor junio 2026: 2.48%
-          </div>
-          <h1>Finanzas claras.<br>Decisiones mejores.</h1>
-          <p class="hero__subtitle">Comparamos hipotecas, explicamos productos financieros y te damos herramientas para tomar el control de tu dinero. Sin letra pequeña.</p>
-          <div class="btn-group">
-            <a class="btn btn--primary btn--lg" href="hipotecas.html#comparador">Comparar hipotecas</a>
-            <a class="btn btn--outline btn--lg" href="herramientas/calculadora-hipoteca.html">Calcular cuota</a>
-          </div>
+  <section class="max-w-[1280px] mx-auto px-8 mb-[140px]">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-7 flex flex-col gap-8">
+        <div class="inline-flex items-center gap-2 bg-surface-variant/60 text-primary px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase w-fit border border-fc">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          Actualizado con el Euríbor de junio 2026
         </div>
-        <div class="hero__meta">
-          <p>Más de 50 artículos, comparativas actualizadas y calculadoras financieras para ayudarte a tomar la mejor decisión.</p>
-          <div class="hero__stat"><span>📊</span> Euríbor hoy · <strong>2.48%</strong></div>
-          <div class="hero__stat"><span>🏦</span> Hipotecas comparadas · <strong>+40 bancos</strong></div>
-          <div class="hero__stat"><span>📝</span> Artículos publicados · <strong>50+ guías</strong></div>
+        <h1 class="font-h1 text-[72px] lg:text-h1 text-primary leading-[1.05] tracking-[-0.04em] font-semibold">
+          Finanzas claras.<br>Decisiones mejores.
+        </h1>
+        <p class="font-body-lg text-body-lg text-secondary-fc max-w-lg">
+          Comparamos hipotecas, explicamos productos financieros y te damos las herramientas para tomar el control de tu dinero. Sin letra pequeña.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 mt-2">
+          <a class="bg-primary text-on-primary px-7 py-3.5 rounded-full font-medium transition-all hover:bg-opacity-90 text-[15px]" href="#comparador">Comparar hipotecas</a>
+          <a class="bg-transparent border border-outline text-primary px-7 py-3.5 rounded-full font-medium transition-all hover:bg-surface-variant text-[15px]" href="#calculadora">Calcular cuota</a>
+        </div>
+      </div>
+      <div class="lg:col-span-4 lg:col-start-9 flex justify-end">
+        <div class="text-right pt-4 max-w-xs">
+          <p class="font-body-lg text-body-lg text-secondary-fc">
+            Más de 50 artículos, comparativas actualizadas y calculadoras financieras para ayudarte a tomar la mejor decisión hipotecaria.
+          </p>
+          <div class="mt-6 flex flex-col gap-3 text-right">
+            <div class="flex items-center justify-end gap-2">
+              <span class="text-sm text-secondary-fc">Euríbor hoy</span>
+              <span class="font-semibold text-primary text-sm bg-surface-variant/60 px-3 py-1 rounded-full border border-fc">2.48%</span>
+            </div>
+            <div class="flex items-center justify-end gap-2">
+              <span class="text-sm text-secondary-fc">Hipotecas comparadas</span>
+              <span class="font-semibold text-primary text-sm bg-surface-variant/60 px-3 py-1 rounded-full border border-fc">+40 bancos</span>
+            </div>
+            <div class="flex items-center justify-end gap-2">
+              <span class="text-sm text-secondary-fc">Guías publicadas</span>
+              <span class="font-semibold text-primary text-sm bg-surface-variant/60 px-3 py-1 rounded-full border border-fc">50+ artículos</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CALCULADORA PANEL -->
-  <section class="section--lg">
-    <div class="container">
-      <div class="hero-panel">
-        <div class="hero-panel__orb" style="width:350px;height:350px;background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(99,102,241,0.1));top:-80px;left:-60px;"></div>
-        <div class="hero-panel__orb" style="width:280px;height:280px;background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(20,184,166,0.08));bottom:-40px;right:40px;"></div>
-        <div class="hero-panel__top">
-          <div class="hero-panel__tabs">
-            <button class="hero-panel__tab active" id="tab-fija" onclick="switchTab('fija',3.2)">Hipoteca fija</button>
-            <button class="hero-panel__tab" id="tab-variable" onclick="switchTab('variable',3.13)">Hipoteca variable</button>
-            <button class="hero-panel__tab" id="tab-mixta" onclick="switchTab('mixta',2.99)">Hipoteca mixta</button>
+  <!-- PANEL PRINCIPAL — CALCULADORA HIPOTECA -->
+  <section id="calculadora" class="max-w-[1280px] mx-auto px-8 mb-[180px]">
+    <div class="bg-panel-fc rounded-3xl p-8 flex flex-col relative overflow-hidden border border-fc min-h-[580px]">
+      <!-- Orbs decorativos -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-60">
+        <div class="w-[350px] h-[350px] rounded-full bg-gradient-to-tr from-blue-400/20 to-indigo-300/10 blur-3xl absolute -ml-60 -mt-20"></div>
+        <div class="w-[300px] h-[300px] rounded-full bg-gradient-to-tr from-emerald-400/15 to-teal-300/10 blur-3xl absolute ml-60 mt-20"></div>
+      </div>
+      <!-- Tabs arriba -->
+      <div class="flex justify-between items-center z-10 mb-8">
+        <div class="flex bg-surface-container-low p-1 rounded-full border border-fc shadow-sm">
+          <button onclick="setTab('fija')" id="tab-fija" class="px-4 py-2 bg-surface text-primary rounded-full text-sm font-medium shadow-sm transition-all">Hipoteca fija</button>
+          <button onclick="setTab('variable')" id="tab-variable" class="px-4 py-2 text-secondary-fc rounded-full text-sm font-medium hover:text-primary transition-colors">Hipoteca variable</button>
+          <button onclick="setTab('mixta')" id="tab-mixta" class="px-4 py-2 text-secondary-fc rounded-full text-sm font-medium hover:text-primary transition-colors">Hipoteca mixta</button>
+        </div>
+        <div class="bg-surface-container-low px-4 py-2 rounded-full border border-fc flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-sm font-medium">Calculadora gratuita</span>
+        </div>
+      </div>
+      <!-- Calculadora central -->
+      <div class="z-10 flex-grow grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <!-- Sliders -->
+        <div class="flex flex-col gap-7">
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-sm font-medium text-secondary-fc">Importe del préstamo</span>
+              <span class="text-sm font-bold text-primary" id="val-importe">180.000 €</span>
+            </div>
+            <input type="range" min="50000" max="600000" step="5000" value="180000" id="slider-importe" oninput="calcular()">
+            <div class="flex justify-between mt-1">
+              <span class="text-xs text-secondary-fc">50.000 €</span>
+              <span class="text-xs text-secondary-fc">600.000 €</span>
+            </div>
           </div>
-          <div class="hero-panel__status">
-            <span class="dot-live"></span>
-            <span>Calculadora gratuita</span>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-sm font-medium text-secondary-fc">Plazo de amortización</span>
+              <span class="text-sm font-bold text-primary" id="val-plazo">25 años</span>
+            </div>
+            <input type="range" min="5" max="40" step="1" value="25" id="slider-plazo" oninput="calcular()">
+            <div class="flex justify-between mt-1">
+              <span class="text-xs text-secondary-fc">5 años</span>
+              <span class="text-xs text-secondary-fc">40 años</span>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-sm font-medium text-secondary-fc">Tipo de interés (TIN)</span>
+              <span class="text-sm font-bold text-primary" id="val-tin">3.20%</span>
+            </div>
+            <input type="range" min="0.5" max="8" step="0.05" value="3.2" id="slider-tin" oninput="calcular()">
+            <div class="flex justify-between mt-1">
+              <span class="text-xs text-secondary-fc">0.50%</span>
+              <span class="text-xs text-secondary-fc">8.00%</span>
+            </div>
           </div>
         </div>
-        <div class="calc-grid">
-          <div class="calc-sliders">
-            <div class="calc-row">
-              <div class="calc-row__header">
-                <span class="calc-row__label">Importe del préstamo</span>
-                <span class="calc-row__val" id="v-importe">180.000 €</span>
-              </div>
-              <input type="range" min="50000" max="600000" step="5000" value="180000" id="s-importe" oninput="doCalc()">
-              <div class="calc-row__ticks"><span>50.000 €</span><span>600.000 €</span></div>
+        <!-- Resultado -->
+        <div class="bg-white/30 backdrop-blur-2xl p-8 rounded-[2rem] border border-white/50 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] flex flex-col gap-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-widest text-secondary-fc">Cuota mensual estimada</span>
+            <span class="text-xs bg-emerald-500/15 text-emerald-700 px-2.5 py-1 rounded-full font-semibold border border-emerald-500/20">Resultado</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-[56px] font-bold text-primary leading-none tracking-tight" id="resultado-cuota">871</span>
+            <span class="text-xl text-secondary-fc font-medium">€/mes</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 pt-2 border-t border-black/5">
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] uppercase tracking-widest text-secondary-fc font-semibold">Total a pagar</span>
+              <span class="text-lg font-bold text-primary" id="resultado-total">261.300 €</span>
             </div>
-            <div class="calc-row">
-              <div class="calc-row__header">
-                <span class="calc-row__label">Plazo de amortización</span>
-                <span class="calc-row__val" id="v-plazo">25 años</span>
-              </div>
-              <input type="range" min="5" max="40" step="1" value="25" id="s-plazo" oninput="doCalc()">
-              <div class="calc-row__ticks"><span>5 años</span><span>40 años</span></div>
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] uppercase tracking-widest text-secondary-fc font-semibold">Intereses totales</span>
+              <span class="text-lg font-bold text-primary" id="resultado-intereses">81.300 €</span>
             </div>
-            <div class="calc-row">
-              <div class="calc-row__header">
-                <span class="calc-row__label">Tipo de interés (TIN)</span>
-                <span class="calc-row__val" id="v-tin">3.20%</span>
-              </div>
-              <input type="range" min="0.5" max="8" step="0.05" value="3.2" id="s-tin" oninput="doCalc()">
-              <div class="calc-row__ticks"><span>0.50%</span><span>8.00%</span></div>
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] uppercase tracking-widest text-secondary-fc font-semibold">TAE estimada</span>
+              <span class="text-lg font-bold text-primary" id="resultado-tae">3.28%</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] uppercase tracking-widest text-secondary-fc font-semibold">Nº cuotas</span>
+              <span class="text-lg font-bold text-primary" id="resultado-cuotas">300</span>
             </div>
           </div>
-          <div class="calc-result">
-            <div class="calc-result__header">
-              <span class="calc-result__label">Cuota mensual estimada</span>
-              <span class="badge badge--green">Resultado</span>
-            </div>
-            <div class="calc-result__main">
-              <span class="calc-result__num" id="r-cuota">871</span>
-              <span class="calc-result__unit">€/mes</span>
-            </div>
-            <div class="calc-result__grid">
-              <div class="calc-result__item">
-                <div class="calc-result__item-label">Total a pagar</div>
-                <div class="calc-result__item-val" id="r-total">261.300 €</div>
-              </div>
-              <div class="calc-result__item">
-                <div class="calc-result__item-label">Intereses totales</div>
-                <div class="calc-result__item-val" id="r-intereses">81.300 €</div>
-              </div>
-              <div class="calc-result__item">
-                <div class="calc-result__item-label">TAE estimada</div>
-                <div class="calc-result__item-val" id="r-tae">3.28%</div>
-              </div>
-              <div class="calc-result__item">
-                <div class="calc-result__item-label">Nº cuotas</div>
-                <div class="calc-result__item-val" id="r-cuotas">300</div>
-              </div>
-            </div>
-            <a class="btn btn--primary" style="justify-content:center;margin-top:4px;" href="hipotecas.html#comparador">Ver hipotecas con este perfil →</a>
-          </div>
+          <a href="#comparador" class="bg-primary text-on-primary px-6 py-3 rounded-full font-medium text-sm text-center hover:bg-opacity-90 transition-all mt-2">
+            Ver hipotecas con este perfil →
+          </a>
         </div>
-        <div class="hero-panel__bar">
-          <div class="hero-panel__bar-links">
-            <a href="herramientas/calculadora-hipoteca.html" class="active">Calculadora hipoteca</a>
-            <a href="herramientas/simulador-ahorro.html">Simulador de ahorro</a>
-            <a href="herramientas/calculadora-irpf.html">Calculadora IRPF</a>
-            <a href="herramientas/calculadora-euribor.html">Cuota con Euríbor</a>
-          </div>
-          <a class="btn btn--primary btn--sm" href="herramientas/calculadora-hipoteca.html">Ver todas →</a>
+      </div>
+      <!-- Bottom bar -->
+      <div class="flex justify-between items-center z-10 bg-surface/80 backdrop-blur-md p-4 rounded-2xl border border-fc mt-8">
+        <div class="flex gap-6 overflow-x-auto">
+          <span class="text-sm font-medium text-primary">Calculadora hipoteca</span>
+          <span class="text-sm font-medium text-secondary-fc hidden md:block">Comparador de hipotecas</span>
+          <span class="text-sm font-medium text-secondary-fc hidden md:block">Simulador de ahorro</span>
+          <span class="text-sm font-medium text-secondary-fc hidden md:block">Calculadora IRPF</span>
         </div>
+        <a class="bg-primary text-on-primary px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap" href="#herramientas">Ver todas las herramientas</a>
       </div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <section class="section" style="margin-bottom:60px;">
-    <div class="container">
-      <p class="label-caps text-muted" style="text-align:center;margin-bottom:20px;">Información actualizada sobre los principales bancos de España</p>
-    </div>
-    <div class="marquee-wrap">
-      <div class="marquee-track">
-        <span class="marquee-item">Santander</span><span class="marquee-item">BBVA</span>
-        <span class="marquee-item">CaixaBank</span><span class="marquee-item">Sabadell</span>
-        <span class="marquee-item">Bankinter</span><span class="marquee-item">ING</span>
-        <span class="marquee-item">Openbank</span><span class="marquee-item">Unicaja</span>
-        <span class="marquee-item">Kutxabank</span><span class="marquee-item">Ibercaja</span>
-        <span class="marquee-item">Myinvestor</span><span class="marquee-item">EVO Banco</span>
-        <span class="marquee-item">Santander</span><span class="marquee-item">BBVA</span>
-        <span class="marquee-item">CaixaBank</span><span class="marquee-item">Sabadell</span>
-        <span class="marquee-item">Bankinter</span><span class="marquee-item">ING</span>
-        <span class="marquee-item">Openbank</span><span class="marquee-item">Unicaja</span>
-        <span class="marquee-item">Kutxabank</span><span class="marquee-item">Ibercaja</span>
-        <span class="marquee-item">Myinvestor</span><span class="marquee-item">EVO Banco</span>
+  <!-- MARQUEE — BANCOS -->
+  <section class="max-w-[1280px] mx-auto px-8 text-center mb-6">
+    <h3 class="font-label-caps text-label-caps text-secondary-fc uppercase tracking-widest">Información actualizada sobre los principales bancos de España</h3>
+  </section>
+  <section class="w-full overflow-hidden mb-[140px] py-4">
+    <div class="flex whitespace-nowrap overflow-hidden">
+      <div class="flex items-center gap-24 animate-marquee">
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Santander</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">BBVA</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">CaixaBank</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Sabadell</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Bankinter</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">ING</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Openbank</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Unicaja</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Kutxabank</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Ibercaja</span>
+        <!-- duplicado para loop continuo -->
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Santander</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">BBVA</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">CaixaBank</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Sabadell</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Bankinter</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">ING</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Openbank</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Unicaja</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Kutxabank</span>
+        <span class="text-secondary-fc/30 font-bold text-lg uppercase tracking-tighter">Ibercaja</span>
       </div>
     </div>
   </section>
 
-  <!-- HIPOTECAS -->
-  <section class="section--lg">
-    <div class="container">
-      <div class="section-label">
-        <span class="section-label__tag">Hipotecas</span>
-        <div class="section-label__line"></div>
+  <!-- SECCIÓN HIPOTECAS -->
+  <section id="hipotecas" class="max-w-[1280px] mx-auto px-8 mb-[180px]">
+    <div class="flex items-center gap-4 mb-10">
+      <span class="font-label-caps text-label-caps bg-surface-variant text-primary px-3 py-1 rounded-full">Hipotecas</span>
+      <div class="h-px bg-fc flex-grow opacity-50" style="background:#E7E7E4"></div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+      <div class="lg:col-span-5">
+        <h2 class="font-h2 text-[44px] text-primary leading-tight">Todo lo que necesitas saber sobre hipotecas</h2>
       </div>
-      <div class="section-head">
-        <h2>Todo lo que necesitas saber sobre hipotecas</h2>
-        <p>Desde la hipoteca fija vs. variable hasta cómo negociar con el banco, guías escritas por expertos financieros.</p>
+      <div class="lg:col-span-6 lg:col-start-7 flex items-end">
+        <p class="font-body-lg text-body-lg text-secondary-fc">Desde la hipoteca fija vs. variable hasta cómo negociar con el banco, te explicamos cada paso con guías escritas por expertos financieros.</p>
       </div>
-      <div class="cards-2" style="margin-bottom:20px;">
-        <a class="card-big card-big--img" href="articulos/hipoteca-fija-vs-variable.html" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop');">
-          <div class="card-big__chip">Guía completa</div>
-          <div class="card-big__glass">
-            <h4>Hipoteca fija vs. variable: ¿cuál te conviene en 2026?</h4>
-            <p>Comparativa actualizada con el Euríbor actual</p>
-            <a href="articulos/hipoteca-fija-vs-variable.html">Leer guía →</a>
+    </div>
+    <!-- Cards hipotecas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <!-- Card grande 1 -->
+      <a href="#" class="bg-card-fc rounded-2xl border border-fc h-[280px] flex flex-col justify-end relative overflow-hidden group hover:shadow-sm transition-shadow">
+        <img alt="Hipoteca fija vs variable" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-85 transition-opacity duration-500" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop">
+        <div class="z-10 bg-white/20 backdrop-blur-xl border border-white/30 p-6 rounded-b-2xl text-white">
+          <span class="text-xs font-bold uppercase tracking-widest text-white/70 mb-2 block">Guía completa</span>
+          <h4 class="font-h3 text-[20px] mb-1 text-white">Hipoteca fija vs. variable: ¿cuál te conviene?</h4>
+          <p class="text-sm text-white/80">Comparativa actualizada con el Euríbor de 2026</p>
+        </div>
+      </a>
+      <!-- Card grande 2 -->
+      <a href="#" class="bg-card-fc rounded-2xl p-6 border border-fc h-[280px] flex flex-col justify-between relative overflow-hidden group hover:shadow-sm transition-shadow">
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-surface-variant/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="flex justify-between items-start z-10">
+          <span class="material-symbols-outlined text-secondary-fc text-3xl">calculate</span>
+          <span class="text-xs bg-emerald-500/15 text-emerald-700 px-2.5 py-1 rounded-full font-semibold border border-emerald-500/20">Actualizado</span>
+        </div>
+        <div class="z-10">
+          <span class="text-xs font-bold uppercase tracking-widest text-secondary-fc mb-2 block">Paso a paso</span>
+          <h4 class="font-h3 text-[20px] mb-2">Cómo conseguir la mejor hipoteca en 2026</h4>
+          <p class="text-sm text-secondary-fc">Negociación, subrogación y los trucos que los bancos no te cuentan.</p>
+        </div>
+      </a>
+    </div>
+    <!-- Cards pequeñas -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="#" class="bg-panel-fc rounded-xl p-5 border border-fc flex flex-col gap-3 items-start hover:bg-surface-variant/50 transition-colors cursor-pointer">
+        <span class="material-symbols-outlined text-primary">percent</span>
+        <span class="font-medium text-sm">Euríbor hoy</span>
+      </a>
+      <a href="#" class="bg-panel-fc rounded-xl p-5 border border-fc flex flex-col gap-3 items-start hover:bg-surface-variant/50 transition-colors cursor-pointer">
+        <span class="material-symbols-outlined text-primary">swap_horiz</span>
+        <span class="font-medium text-sm">Subrogación</span>
+      </a>
+      <a href="#" class="bg-panel-fc rounded-xl p-5 border border-fc flex flex-col gap-3 items-start hover:bg-surface-variant/50 transition-colors cursor-pointer">
+        <span class="material-symbols-outlined text-primary">gavel</span>
+        <span class="font-medium text-sm">Gastos e impuestos</span>
+      </a>
+      <a href="#" class="bg-panel-fc rounded-xl p-5 border border-fc flex flex-col gap-3 items-start hover:bg-surface-variant/50 transition-colors cursor-pointer">
+        <span class="material-symbols-outlined text-primary">account_balance</span>
+        <span class="font-medium text-sm">Amortización</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- SECCIÓN COMPARADOR -->
+  <section id="comparador" class="max-w-[1280px] mx-auto px-8 mb-[180px]">
+    <div class="flex items-center gap-4 mb-10">
+      <span class="font-label-caps text-label-caps bg-surface-variant text-primary px-3 py-1 rounded-full">Comparador</span>
+      <div class="h-px flex-grow opacity-50" style="background:#E7E7E4"></div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+      <div class="lg:col-span-5">
+        <h2 class="font-h2 text-[44px] text-primary leading-tight">Las mejores hipotecas de junio 2026</h2>
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 flex items-end">
+        <p class="font-body-lg text-body-lg text-secondary-fc">Comparativa objetiva de las hipotecas más competitivas del mercado español. Sin comisiones ni acuerdos comerciales.</p>
+      </div>
+    </div>
+    <!-- Tabla comparador -->
+    <div class="bg-card-fc rounded-3xl border border-fc overflow-hidden">
+      <!-- Header tabla -->
+      <div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-fc bg-panel-fc">
+        <div class="col-span-4 text-xs font-bold uppercase tracking-widest text-secondary-fc">Banco / Producto</div>
+        <div class="col-span-2 text-xs font-bold uppercase tracking-widest text-secondary-fc text-center">TIN</div>
+        <div class="col-span-2 text-xs font-bold uppercase tracking-widest text-secondary-fc text-center">TAE</div>
+        <div class="col-span-2 text-xs font-bold uppercase tracking-widest text-secondary-fc text-center">Cuota/mes*</div>
+        <div class="col-span-2 text-xs font-bold uppercase tracking-widest text-secondary-fc text-center">Valoración</div>
+      </div>
+      <!-- Filas -->
+      <div class="divide-y divide-fc">
+        <!-- Fila 1 -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-5 items-center hover:bg-panel-fc/50 transition-colors">
+          <div class="col-span-4 flex flex-col gap-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-primary">Openbank</span>
+              <span class="text-[10px] bg-blue-500/10 text-blue-700 px-2 py-0.5 rounded-full font-bold border border-blue-500/15">FIJA</span>
+            </div>
+            <span class="text-xs text-secondary-fc">Hipoteca Fija Open — sin vinculación</span>
           </div>
-        </a>
-        <a class="card-big" href="articulos/como-conseguir-mejor-hipoteca.html">
-          <div class="card-big__orb" style="width:200px;height:200px;background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(99,102,241,0.15));top:-40px;left:-30px;"></div>
-          <div class="card-big__orb" style="width:160px;height:160px;background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(20,184,166,0.1));bottom:-20px;right:-20px;"></div>
-          <div class="card-big__chip">Paso a paso</div>
-          <div class="card-big__bottom">
-            <span class="badge badge--green" style="margin-bottom:12px;">Actualizado</span>
-            <h4>Cómo conseguir la mejor hipoteca en 2026</h4>
-            <p>Negociación, subrogación y los trucos que los bancos no te cuentan.</p>
-            <a href="articulos/como-conseguir-mejor-hipoteca.html">Leer guía →</a>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">2.90%</span></div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">2.99%</span></div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">845 €</span></div>
+          <div class="col-span-2 flex justify-center">
+            <div class="flex gap-0.5">
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star_half</span>
+            </div>
           </div>
-        </a>
+        </div>
+        <!-- Fila 2 — destacada -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-5 items-center bg-emerald-500/5 border-l-2 border-emerald-500">
+          <div class="col-span-4 flex flex-col gap-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-primary">BBVA</span>
+              <span class="text-[10px] bg-blue-500/10 text-blue-700 px-2 py-0.5 rounded-full font-bold border border-blue-500/15">FIJA</span>
+              <span class="text-[10px] bg-emerald-500/15 text-emerald-700 px-2 py-0.5 rounded-full font-bold border border-emerald-500/20">★ Mejor oferta</span>
+            </div>
+            <span class="text-xs text-secondary-fc">Hipoteca Fija — con nómina domiciliada</span>
+          </div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">2.75%</span></div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">2.84%</span></div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">828 €</span></div>
+          <div class="col-span-2 flex justify-center">
+            <div class="flex gap-0.5">
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+            </div>
+          </div>
+        </div>
+        <!-- Fila 3 -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-5 items-center hover:bg-panel-fc/50 transition-colors">
+          <div class="col-span-4 flex flex-col gap-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-primary">Bankinter</span>
+              <span class="text-[10px] bg-orange-500/10 text-orange-700 px-2 py-0.5 rounded-full font-bold border border-orange-500/15">VARIABLE</span>
+            </div>
+            <span class="text-xs text-secondary-fc">Hipoteca Variable — Euríbor + 0.65%</span>
+          </div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">Euríbor + 0.65</span></div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">3.28%</span></div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">876 €</span></div>
+          <div class="col-span-2 flex justify-center">
+            <div class="flex gap-0.5">
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined text-amber-400/40 text-base">star</span>
+            </div>
+          </div>
+        </div>
+        <!-- Fila 4 -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-5 items-center hover:bg-panel-fc/50 transition-colors">
+          <div class="col-span-4 flex flex-col gap-0.5">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-primary">ING</span>
+              <span class="text-[10px] bg-purple-500/10 text-purple-700 px-2 py-0.5 rounded-full font-bold border border-purple-500/15">MIXTA</span>
+            </div>
+            <span class="text-xs text-secondary-fc">Hipoteca Naranja Mixta — 10 años fija</span>
+          </div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">2.99%</span></div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">3.10%</span></div>
+          <div class="col-span-2 text-center"><span class="text-sm font-bold text-primary">852 €</span></div>
+          <div class="col-span-2 flex justify-center">
+            <div class="flex gap-0.5">
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined fill text-amber-400 text-base">star</span>
+              <span class="material-symbols-outlined text-amber-400/40 text-base">star</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mini-grid">
-        <a class="mini-card" href="articulos/euribor-hoy.html"><span class="mini-card__icon">percent</span><span class="mini-card__label">Euríbor hoy</span></a>
-        <a class="mini-card" href="articulos/subrogacion-hipoteca.html"><span class="mini-card__icon">swap_horiz</span><span class="mini-card__label">Subrogación</span></a>
-        <a class="mini-card" href="articulos/gastos-hipoteca.html"><span class="mini-card__icon">gavel</span><span class="mini-card__label">Gastos e impuestos</span></a>
-        <a class="mini-card" href="articulos/amortizar-hipoteca.html"><span class="mini-card__icon">account_balance</span><span class="mini-card__label">Amortización anticipada</span></a>
+      <!-- Footer tabla -->
+      <div class="px-6 py-4 bg-panel-fc border-t border-fc flex justify-between items-center">
+        <span class="text-xs text-secondary-fc">*Cuota estimada para préstamo de 180.000 € a 25 años. Actualizado junio 2026.</span>
+        <a href="#" class="text-sm font-medium text-primary hover:underline flex items-center gap-1">Ver comparativa completa <span class="material-symbols-outlined text-base">arrow_forward</span></a>
       </div>
     </div>
   </section>
 
-  <!-- COMPARADOR HOME -->
-  <section class="section--lg" id="comparador">
-    <div class="container">
-      <div class="section-label">
-        <span class="section-label__tag">Comparador</span>
-        <div class="section-label__line"></div>
+  <!-- SECCIÓN FINANZAS PERSONALES -->
+  <section id="finanzas" class="max-w-[1280px] mx-auto px-8 mb-[180px]">
+    <div class="flex items-center gap-4 mb-10">
+      <span class="font-label-caps text-label-caps bg-surface-variant text-primary px-3 py-1 rounded-full">Finanzas personales</span>
+      <div class="h-px flex-grow opacity-50" style="background:#E7E7E4"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Card grande finanzas -->
+      <div class="bg-card-fc rounded-3xl p-8 border border-fc h-[420px] flex flex-col relative overflow-hidden group">
+        <div class="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity duration-500">
+          <div class="w-[200px] h-[200px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-3xl absolute -ml-20 -mt-20"></div>
+          <div class="w-[200px] h-[200px] rounded-full bg-gradient-to-r from-emerald-400 to-teal-300 blur-3xl absolute ml-20 mt-20"></div>
+        </div>
+        <div class="z-10 bg-surface/80 backdrop-blur-sm self-start px-4 py-2 rounded-full border border-fc text-sm font-medium mb-auto">
+          Ahorro e inversión
+        </div>
+        <div class="z-10 mt-auto bg-white/20 backdrop-blur-2xl p-6 rounded-[2rem] border border-white/40 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)]">
+          <h4 class="font-h3 text-[20px] mb-2">Cómo ahorrar 10.000 € en un año</h4>
+          <p class="text-sm text-secondary-fc">Estrategias reales, sin trucos milagrosos. La regla del 50/30/20 explicada.</p>
+          <a href="#" class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">Leer guía <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+        </div>
       </div>
-      <div class="section-head">
-        <h2>Las mejores hipotecas de junio 2026</h2>
-        <p>Comparativa objetiva de las ofertas más competitivas del mercado español. Sin comisiones ni acuerdos comerciales.</p>
-      </div>
-      <div class="table-wrap">
-        <div class="table-head cmp-cols-5">
-          <span>Banco / Producto</span><span>TIN</span><span>TAE</span><span>Cuota/mes*</span><span>Valoración</span>
-        </div>
-        <div class="table-row cmp-cols-5">
-          <div class="table-row__bank">
-            <span class="table-row__bank-name">Openbank <span class="badge badge--blue" style="vertical-align:middle;margin-left:4px;">FIJA</span></span>
-            <span class="table-row__bank-desc">Hipoteca Fija Open — sin vinculación obligatoria</span>
+      <!-- Card grande 2 finanzas -->
+      <div class="bg-card-fc rounded-3xl p-8 border border-fc h-[420px] flex flex-col relative overflow-hidden group">
+        <!-- Gráfico decorativo -->
+        <div class="absolute inset-0 flex items-end justify-center pb-24 opacity-40 group-hover:opacity-70 transition-opacity duration-500">
+          <div class="flex items-end gap-2 h-48 w-full px-8">
+            <div class="w-full bg-surface-variant rounded-t-sm h-[20%]"></div>
+            <div class="w-full bg-surface-variant rounded-t-sm h-[35%]"></div>
+            <div class="w-full bg-surface-variant rounded-t-sm h-[45%]"></div>
+            <div class="w-full bg-surface-variant rounded-t-sm h-[55%]"></div>
+            <div class="w-full bg-primary/15 rounded-t-sm h-[75%] relative">
+              <div class="absolute -top-3 -right-3 w-5 h-5 bg-primary rounded-full flex items-center justify-center border-2 border-surface">
+                <div class="w-1.5 h-1.5 bg-surface rounded-full"></div>
+              </div>
+            </div>
+            <div class="w-full bg-surface-variant rounded-t-sm h-[65%]"></div>
+            <div class="w-full bg-surface-variant rounded-t-sm h-[80%]"></div>
           </div>
-          <span class="table-row__val">2.90%</span>
-          <span class="table-row__val">2.99%</span>
-          <span class="table-row__val">845 €</span>
-          <div class="table-stars">★★★★<span style="opacity:.3">★</span></div>
         </div>
-        <div class="table-row cmp-cols-5 table-row--highlight">
-          <div class="table-row__bank">
-            <span class="table-row__bank-name">BBVA <span class="badge badge--blue" style="vertical-align:middle;margin-left:4px;">FIJA</span> <span class="badge badge--green" style="vertical-align:middle;margin-left:4px;">★ Mejor oferta</span></span>
-            <span class="table-row__bank-desc">Hipoteca Fija — con nómina domiciliada</span>
-          </div>
-          <span class="table-row__val">2.75%</span>
-          <span class="table-row__val">2.84%</span>
-          <span class="table-row__val">828 €</span>
-          <div class="table-stars">★★★★★</div>
+        <div class="z-10 bg-surface/80 backdrop-blur-sm self-start px-4 py-2 rounded-full border border-fc text-sm font-medium mb-auto">
+          Inversión
         </div>
-        <div class="table-row cmp-cols-5">
-          <div class="table-row__bank">
-            <span class="table-row__bank-name">Bankinter <span class="badge badge--orange" style="vertical-align:middle;margin-left:4px;">VARIABLE</span></span>
-            <span class="table-row__bank-desc">Hipoteca Variable — Euríbor + 0.65%</span>
-          </div>
-          <span class="table-row__val">Eur+0.65</span>
-          <span class="table-row__val">3.28%</span>
-          <span class="table-row__val">876 €</span>
-          <div class="table-stars">★★★★<span style="opacity:.3">★</span></div>
-        </div>
-        <div class="table-row cmp-cols-5">
-          <div class="table-row__bank">
-            <span class="table-row__bank-name">ING <span class="badge badge--purple" style="vertical-align:middle;margin-left:4px;">MIXTA</span></span>
-            <span class="table-row__bank-desc">Hipoteca Naranja Mixta — 10 años fija</span>
-          </div>
-          <span class="table-row__val">2.99%</span>
-          <span class="table-row__val">3.10%</span>
-          <span class="table-row__val">852 €</span>
-          <div class="table-stars">★★★★<span style="opacity:.3">★</span></div>
-        </div>
-        <div class="table-row cmp-cols-5">
-          <div class="table-row__bank">
-            <span class="table-row__bank-name">EVO Banco <span class="badge badge--blue" style="vertical-align:middle;margin-left:4px;">FIJA</span></span>
-            <span class="table-row__bank-desc">Hipoteca Fija EVO — 100% online</span>
-          </div>
-          <span class="table-row__val">3.05%</span>
-          <span class="table-row__val">3.14%</span>
-          <span class="table-row__val">857 €</span>
-          <div class="table-stars">★★★★<span style="opacity:.3">★</span></div>
-        </div>
-        <div class="table-foot">
-          <p>*Cuota estimada para préstamo de 180.000 € a 25 años. Datos orientativos, actualizado junio 2026.</p>
-          <a class="btn btn--outline btn--sm" href="hipotecas.html#comparador">Ver comparativa completa →</a>
+        <div class="z-10 mt-auto bg-white/30 backdrop-blur-2xl p-6 rounded-[2rem] border border-white/50 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)]">
+          <h4 class="font-h3 text-[20px] mb-2">Los mejores fondos indexados en España</h4>
+          <p class="text-sm text-secondary-fc">Comparativa de fondos de bajo coste para empezar a invertir desde 50 €/mes.</p>
+          <a href="#" class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">Ver comparativa <span class="material-symbols-outlined text-base">arrow_forward</span></a>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- FINANZAS PERSONALES -->
-  <section class="section--lg">
-    <div class="container">
-      <div class="section-label">
-        <span class="section-label__tag">Finanzas personales</span>
-        <div class="section-label__line"></div>
-      </div>
-      <div class="section-head">
-        <h2>Ahorra, invierte y controla tu dinero</h2>
-        <p>Guías prácticas para mejorar tu situación financiera, con estrategias reales para el contexto español.</p>
-      </div>
-      <div class="cards-2" style="margin-bottom:20px;">
-        <a class="card-big" href="articulos/como-ahorrar-10000-euros.html">
-          <div class="card-big__orb" style="width:200px;height:200px;background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(59,130,246,0.15));top:-20px;left:-30px;"></div>
-          <div class="card-big__orb" style="width:160px;height:160px;background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(245,158,11,0.1));bottom:-20px;right:-10px;"></div>
-          <div class="card-big__chip">Ahorro e inversión</div>
-          <div class="card-big__bottom">
-            <h4>Cómo ahorrar 10.000 € en un año</h4>
-            <p>Estrategias reales, sin trucos milagrosos. La regla del 50/30/20 explicada.</p>
-            <a href="articulos/como-ahorrar-10000-euros.html">Leer guía →</a>
-          </div>
-        </a>
-        <a class="card-big" href="articulos/mejores-fondos-indexados-espana.html">
-          <div class="card-big__orb" style="width:220px;height:220px;background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(239,68,68,0.1));top:-30px;right:-30px;"></div>
-          <!-- Gráfico de barras decorativo -->
-          <div style="position:absolute;bottom:120px;left:32px;right:32px;height:120px;display:flex;align-items:flex-end;gap:8px;opacity:0.3;">
-            <div style="flex:1;background:#E5E2E1;border-radius:4px 4px 0 0;height:30%;"></div>
-            <div style="flex:1;background:#E5E2E1;border-radius:4px 4px 0 0;height:50%;"></div>
-            <div style="flex:1;background:#E5E2E1;border-radius:4px 4px 0 0;height:40%;"></div>
-            <div style="flex:1;background:#111;border-radius:4px 4px 0 0;height:80%;"></div>
-            <div style="flex:1;background:#E5E2E1;border-radius:4px 4px 0 0;height:65%;"></div>
-            <div style="flex:1;background:#E5E2E1;border-radius:4px 4px 0 0;height:90%;"></div>
-          </div>
-          <div class="card-big__chip">Inversión</div>
-          <div class="card-big__bottom">
-            <h4>Los mejores fondos indexados en España</h4>
-            <p>Comparativa de fondos de bajo coste para empezar desde 50 €/mes.</p>
-            <a href="articulos/mejores-fondos-indexados-espana.html">Ver comparativa →</a>
-          </div>
-        </a>
-      </div>
-      <div class="mini-grid">
-        <a class="mini-card" href="articulos/como-ahorrar-dinero.html"><span class="mini-card__icon">savings</span><span class="mini-card__label">Estrategias de ahorro</span></a>
-        <a class="mini-card" href="articulos/fondos-indexados-que-son.html"><span class="mini-card__icon">trending_up</span><span class="mini-card__label">Fondos indexados</span></a>
-        <a class="mini-card" href="articulos/declaracion-renta-hipoteca.html"><span class="mini-card__icon">receipt_long</span><span class="mini-card__label">IRPF y vivienda</span></a>
-        <a class="mini-card" href="articulos/mejores-cuentas-remuneradas.html"><span class="mini-card__icon">credit_card</span><span class="mini-card__label">Cuentas remuneradas</span></a>
-      </div>
+    <!-- Grid de temas -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+      <a href="#" class="bg-panel-fc rounded-xl p-5 border border-fc flex flex-col gap-3 items-start hover:bg-surface-variant/50 transition-colors">
+        <span class="material-symbols-outlined text-primary">savings</span>
+        <span class="font-medium text-sm">Ahorro</span>
+      </a>
+      <a href="#" class="bg-panel-fc rounded-xl p-5 border border-fc flex flex-col gap-3 items-start hover:bg-surface-variant/50 transition-colors">
+        <span class="material-symbols-outlined text-primary">trending_up</span>
+        <span class="font-medium text-sm">Fondos indexados</span>
+      </a>
+      <a href="#" class="bg-panel-fc rounded-xl p-5 border border-fc flex flex-col gap-3 items-start hover:bg-surface-variant/50 transition-colors">
+        <span class="material-symbols-outlined text-primary">receipt_long</span>
+        <span class="font-medium text-sm">Declaración IRPF</span>
+      </a>
+      <a href="#" class="bg-panel-fc rounded-xl p-5 border border-fc flex flex-col gap-3 items-start hover:bg-surface-variant/50 transition-colors">
+        <span class="material-symbols-outlined text-primary">credit_card</span>
+        <span class="font-medium text-sm">Tarjetas</span>
+      </a>
     </div>
   </section>
 
   <!-- ARTÍCULOS RECIENTES -->
-  <section class="section--lg">
-    <div class="container">
-      <div class="section-label">
-        <span class="section-label__tag">Blog</span>
-        <div class="section-label__line"></div>
+  <section id="blog" class="max-w-[1280px] mx-auto px-8 mb-[140px]">
+    <div class="flex items-center gap-4 mb-10">
+      <span class="font-label-caps text-label-caps bg-surface-variant text-primary px-3 py-1 rounded-full">Blog</span>
+      <div class="h-px flex-grow opacity-50" style="background:#E7E7E4"></div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+      <div class="lg:col-span-5">
+        <h2 class="font-h2 text-[44px] text-primary leading-tight">Artículos y guías financieras</h2>
       </div>
-      <div class="section-head">
-        <h2>Artículos y guías financieras</h2>
-        <p>Contenido actualizado con datos reales del mercado español, sin publicidad encubierta.</p>
+      <div class="lg:col-span-6 lg:col-start-7 flex items-end">
+        <p class="font-body-lg text-body-lg text-secondary-fc">Guías escritas por expertos financieros, actualizadas con datos reales del mercado español.</p>
       </div>
-      <div class="articles-grid--3 articles-grid">
-        <a class="article-card" href="articulos/euribor-hoy.html">
-          <img class="article-card__img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop" alt="Euríbor junio 2026">
-          <div class="article-card__body">
-            <div class="article-card__meta">
-              <span class="article-card__cat">Hipotecas</span>
-              <div class="article-card__dot"></div>
-              <span class="article-card__date">5 jun 2026</span>
-            </div>
-            <h4 class="article-card__title">Euríbor junio 2026: previsión y qué significa para tu hipoteca</h4>
-            <p class="article-card__excerpt">El Euríbor cierra mayo en 2.48%. Analizamos qué esperar en los próximos meses y cómo afectará a tu cuota.</p>
-            <span class="article-card__more">Leer más →</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Artículo 1 -->
+      <a href="#" class="bg-card-fc rounded-2xl border border-fc overflow-hidden group hover:shadow-sm transition-shadow flex flex-col">
+        <div class="h-[180px] bg-panel-fc overflow-hidden">
+          <img alt="Euríbor 2026" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop">
+        </div>
+        <div class="p-6 flex flex-col gap-3 flex-grow">
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-secondary-fc">Hipotecas</span>
+            <span class="w-1 h-1 rounded-full bg-secondary-fc/40"></span>
+            <span class="text-[10px] text-secondary-fc">5 jun 2026</span>
           </div>
-        </a>
-        <a class="article-card" href="articulos/mejores-hipotecas-fijas.html">
-          <img class="article-card__img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop" alt="Mejores hipotecas fijas">
-          <div class="article-card__body">
-            <div class="article-card__meta">
-              <span class="article-card__cat">Comparativas</span>
-              <div class="article-card__dot"></div>
-              <span class="article-card__date">1 jun 2026</span>
-            </div>
-            <h4 class="article-card__title">Las 5 mejores hipotecas fijas de junio 2026</h4>
-            <p class="article-card__excerpt">Hemos analizado más de 40 productos para encontrar las ofertas más competitivas del mercado.</p>
-            <span class="article-card__more">Leer más →</span>
+          <h4 class="font-semibold text-[16px] text-primary leading-snug group-hover:underline">Euríbor junio 2026: previsión y qué significa para tu hipoteca</h4>
+          <p class="text-sm text-secondary-fc flex-grow">El Euríbor cierra mayo en el 2.48%. Analizamos qué esperar en los próximos meses.</p>
+          <span class="text-sm font-medium text-primary flex items-center gap-1 mt-2">Leer más <span class="material-symbols-outlined text-base">arrow_forward</span></span>
+        </div>
+      </a>
+      <!-- Artículo 2 -->
+      <a href="#" class="bg-card-fc rounded-2xl border border-fc overflow-hidden group hover:shadow-sm transition-shadow flex flex-col">
+        <div class="h-[180px] bg-panel-fc overflow-hidden">
+          <img alt="Mejores hipotecas" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=800&auto=format&fit=crop">
+        </div>
+        <div class="p-6 flex flex-col gap-3 flex-grow">
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-secondary-fc">Comparativas</span>
+            <span class="w-1 h-1 rounded-full bg-secondary-fc/40"></span>
+            <span class="text-[10px] text-secondary-fc">1 jun 2026</span>
           </div>
-        </a>
-        <a class="article-card" href="articulos/como-ahorrar-para-hipoteca.html">
-          <img class="article-card__img" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=800&auto=format&fit=crop" alt="Ahorrar para hipoteca">
-          <div class="article-card__body">
-            <div class="article-card__meta">
-              <span class="article-card__cat">Finanzas personales</span>
-              <div class="article-card__dot"></div>
-              <span class="article-card__date">28 may 2026</span>
-            </div>
-            <h4 class="article-card__title">Cómo ahorrar para una hipoteca siendo joven en España</h4>
-            <p class="article-card__excerpt">Estrategias reales para llegar al 20% de entrada antes de los 35 años.</p>
-            <span class="article-card__more">Leer más →</span>
+          <h4 class="font-semibold text-[16px] text-primary leading-snug group-hover:underline">Las 5 mejores hipotecas fijas de junio 2026</h4>
+          <p class="text-sm text-secondary-fc flex-grow">Hemos analizado más de 40 productos para encontrar las ofertas más competitivas.</p>
+          <span class="text-sm font-medium text-primary flex items-center gap-1 mt-2">Leer más <span class="material-symbols-outlined text-base">arrow_forward</span></span>
+        </div>
+      </a>
+      <!-- Artículo 3 -->
+      <a href="#" class="bg-card-fc rounded-2xl border border-fc overflow-hidden group hover:shadow-sm transition-shadow flex flex-col">
+        <div class="h-[180px] bg-panel-fc overflow-hidden">
+          <img alt="Ahorro joven" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=800&auto=format&fit=crop">
+        </div>
+        <div class="p-6 flex flex-col gap-3 flex-grow">
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-secondary-fc">Finanzas personales</span>
+            <span class="w-1 h-1 rounded-full bg-secondary-fc/40"></span>
+            <span class="text-[10px] text-secondary-fc">28 may 2026</span>
           </div>
-        </a>
-      </div>
-      <div style="text-align:center;margin-top:40px;">
-        <a class="btn btn--outline btn--lg" href="blog.html">Ver todos los artículos</a>
-      </div>
+          <h4 class="font-semibold text-[16px] text-primary leading-snug group-hover:underline">Cómo ahorrar para una hipoteca siendo joven en España</h4>
+          <p class="text-sm text-secondary-fc flex-grow">Estrategias reales para llegar al 20% de entrada antes de los 35 años.</p>
+          <span class="text-sm font-medium text-primary flex items-center gap-1 mt-2">Leer más <span class="material-symbols-outlined text-base">arrow_forward</span></span>
+        </div>
+      </a>
+    </div>
+    <div class="text-center mt-10">
+      <a href="#" class="bg-transparent border border-outline text-primary px-8 py-3.5 rounded-full font-medium hover:bg-surface-variant transition-all text-[15px]">Ver todos los artículos</a>
     </div>
   </section>
 
   <!-- SIGN OFF -->
-  <section class="section">
-    <div class="container">
-      <div class="signoff">
-        <p class="label-caps">¿Listo para tomar el control de tus finanzas?</p>
-        <h2>Empieza con la calculadora gratuita</h2>
-        <div class="btn-group" style="justify-content:center;">
-          <a class="btn btn--primary btn--lg" href="herramientas/calculadora-hipoteca.html">Calcular mi cuota</a>
-          <a class="btn btn--outline btn--lg" href="hipotecas.html#comparador">Comparar hipotecas</a>
-        </div>
-      </div>
+  <section class="max-w-[1280px] mx-auto px-8 mb-[140px] text-center flex flex-col items-center">
+    <span class="font-label-caps text-label-caps text-secondary-fc uppercase tracking-widest mb-6">¿Listo para tomar el control de tus finanzas?</span>
+    <h2 class="font-h2 text-[44px] text-primary mb-8 max-w-2xl leading-tight">Empieza con la calculadora de hipoteca gratuita</h2>
+    <div class="flex flex-wrap justify-center items-center gap-4">
+      <a class="bg-primary text-on-primary px-8 py-4 rounded-full font-medium transition-all hover:bg-opacity-90 text-[15px]" href="#calculadora">Calcular mi cuota</a>
+      <a class="bg-transparent border border-outline text-primary px-8 py-4 rounded-full font-medium transition-all hover:bg-surface-variant text-[15px]" href="#comparador">Comparar hipotecas</a>
     </div>
   </section>
 
 </main>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <div class="footer__logo">FinanciaClaro</div>
-        <p class="footer__tagline">Guías y comparativas de hipotecas y finanzas personales para España.</p>
+<footer class="w-full border-t border-zinc-200 mt-auto py-12 bg-transparent">
+  <div class="max-w-[1280px] mx-auto px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-10">
+      <div class="col-span-2 lg:col-span-1">
+        <span class="text-[20px] font-bold tracking-tighter text-zinc-900 font-h1 block mb-3">FinanciaClaro</span>
+        <p class="text-sm text-secondary-fc max-w-xs">Guías y comparativas de hipotecas y finanzas personales para España.</p>
       </div>
-      <div class="footer__col">
-        <h5>Hipotecas</h5>
-        <ul>
-          <li><a href="articulos/hipoteca-fija-vs-variable.html">Fija vs. variable</a></li>
-          <li><a href="articulos/mejores-hipotecas-fijas.html">Mejores hipotecas fijas</a></li>
-          <li><a href="articulos/subrogacion-hipoteca.html">Subrogación</a></li>
-          <li><a href="articulos/euribor-hoy.html">Euríbor hoy</a></li>
-        </ul>
+      <div class="flex flex-col gap-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-secondary-fc mb-1">Hipotecas</span>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Hipoteca fija</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Hipoteca variable</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Subrogación</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Euríbor</a>
       </div>
-      <div class="footer__col">
-        <h5>Finanzas</h5>
-        <ul>
-          <li><a href="articulos/como-ahorrar-dinero.html">Ahorro</a></li>
-          <li><a href="articulos/fondos-indexados-que-son.html">Fondos indexados</a></li>
-          <li><a href="articulos/declaracion-renta-hipoteca.html">IRPF</a></li>
-          <li><a href="articulos/mejores-cuentas-remuneradas.html">Cuentas remuneradas</a></li>
-        </ul>
+      <div class="flex flex-col gap-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-secondary-fc mb-1">Finanzas</span>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Ahorro</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Inversión</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">IRPF</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Tarjetas</a>
       </div>
-      <div class="footer__col">
-        <h5>Herramientas</h5>
-        <ul>
-          <li><a href="herramientas/calculadora-hipoteca.html">Calculadora hipoteca</a></li>
-          <li><a href="herramientas/simulador-ahorro.html">Simulador ahorro</a></li>
-          <li><a href="herramientas/calculadora-irpf.html">Calculadora IRPF</a></li>
-          <li><a href="herramientas/calculadora-euribor.html">Cuota Euríbor</a></li>
-        </ul>
+      <div class="flex flex-col gap-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-secondary-fc mb-1">Herramientas</span>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Calculadora hipoteca</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Comparador</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Simulador ahorro</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Calculadora IRPF</a>
       </div>
-      <div class="footer__col">
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="legal/aviso-legal.html">Aviso legal</a></li>
-          <li><a href="legal/politica-privacidad.html">Política de privacidad</a></li>
-          <li><a href="legal/politica-cookies.html">Política de cookies</a></li>
-          <li><a href="legal/sobre-nosotros.html">Sobre nosotros</a></li>
-        </ul>
+      <div class="flex flex-col gap-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-secondary-fc mb-1">Legal</span>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Aviso legal</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Política de privacidad</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Cookies</a>
+        <a class="text-sm text-secondary-fc hover:text-primary transition-colors" href="#">Sobre nosotros</a>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p class="footer__copy">© 2026 FinanciaClaro. Información financiera orientativa.</p>
-      <p class="footer__disclaimer">Los datos mostrados son orientativos. Consulta siempre con un profesional antes de firmar cualquier producto financiero. FinanciaClaro no es una entidad financiera ni presta servicios de asesoramiento.</p>
+    <div class="border-t border-fc pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <span class="text-sm text-secondary-fc">© 2026 FinanciaClaro. Información financiera sin asesoramiento personalizado.</span>
+      <span class="text-xs text-secondary-fc/60">Los datos son orientativos. Consulta siempre con un profesional antes de firmar.</span>
     </div>
   </div>
 </footer>
 
-<!-- COOKIE BANNER -->
-<div class="cookie-overlay" id="cookie-overlay">
-  <div class="cookie-modal">
-    <h3>🍪 Usamos cookies</h3>
-    <p>Utilizamos cookies propias y de terceros para analizar el tráfico y mejorar tu experiencia. Puedes aceptar todas o rechazar las no esenciales. Lee nuestra <a href="legal/politica-cookies.html">política de cookies</a>.</p>
-    <div class="cookie-btns">
-      <button class="cookie-accept" id="cookie-accept">Aceptar todas</button>
-      <button class="cookie-reject" id="cookie-reject">Solo esenciales</button>
-    </div>
-  </div>
-</div>
-
-<script src="assets/js/main.js"></script>
 <script>
-function doCalc() {
-  const imp  = parseFloat(document.getElementById('s-importe').value);
-  const plz  = parseInt(document.getElementById('s-plazo').value);
-  const tin  = parseFloat(document.getElementById('s-tin').value);
-  document.getElementById('v-importe').textContent = imp.toLocaleString('es-ES') + ' €';
-  document.getElementById('v-plazo').textContent   = plz + ' años';
-  document.getElementById('v-tin').textContent     = tin.toFixed(2) + '%';
-  calcHipoteca({ importe: imp, plazo: plz, tin: tin,
-    ids: { cuota:'r-cuota', total:'r-total', intereses:'r-intereses', tae:'r-tae', cuotas:'r-cuotas' }
-  });
-}
-function switchTab(tipo, tinVal) {
-  document.getElementById('s-tin').value = tinVal;
-  ['fija','variable','mixta'].forEach(t => {
-    document.getElementById('tab-'+t).classList.toggle('active', t===tipo);
-  });
-  doCalc();
-}
-doCalc();
+  // Calculadora hipoteca
+  function calcular() {
+    const importe = parseFloat(document.getElementById('slider-importe').value);
+    const plazo = parseInt(document.getElementById('slider-plazo').value);
+    const tin = parseFloat(document.getElementById('slider-tin').value);
+
+    // Mostrar valores
+    document.getElementById('val-importe').textContent = importe.toLocaleString('es-ES') + ' €';
+    document.getElementById('val-plazo').textContent = plazo + ' años';
+    document.getElementById('val-tin').textContent = tin.toFixed(2) + '%';
+
+    // Calcular cuota mensual (sistema francés)
+    const r = (tin / 100) / 12;
+    const n = plazo * 12;
+    let cuota;
+    if (r === 0) {
+      cuota = importe / n;
+    } else {
+      cuota = importe * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+
+    const total = cuota * n;
+    const intereses = total - importe;
+    const tae = (Math.pow(1 + r, 12) - 1) * 100;
+
+    document.getElementById('resultado-cuota').textContent = Math.round(cuota).toLocaleString('es-ES');
+    document.getElementById('resultado-total').textContent = Math.round(total).toLocaleString('es-ES') + ' €';
+    document.getElementById('resultado-intereses').textContent = Math.round(intereses).toLocaleString('es-ES') + ' €';
+    document.getElementById('resultado-tae').textContent = tae.toFixed(2) + '%';
+    document.getElementById('resultado-cuotas').textContent = n;
+  }
+
+  // Tabs calculadora
+  function setTab(tipo) {
+    const tabs = { fija: 3.2, variable: 2.48 + 0.65, mixta: 2.99 };
+    document.getElementById('slider-tin').value = tabs[tipo] || 3.2;
+    ['fija','variable','mixta'].forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if (t === tipo) {
+        el.classList.add('bg-surface', 'text-primary', 'shadow-sm');
+        el.classList.remove('text-secondary-fc');
+      } else {
+        el.classList.remove('bg-surface', 'text-primary', 'shadow-sm');
+        el.classList.add('text-secondary-fc');
+      }
+    });
+    calcular();
+  }
+
+  // Init
+  calcular();
 </script>
 </body>
 </html>
